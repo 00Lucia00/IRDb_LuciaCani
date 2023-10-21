@@ -14,7 +14,6 @@ builder.Services.AddSwaggerGen();
 var connString = builder.Configuration.GetConnectionString("IRDbConnection");
 builder.Services.AddDbContext<IRDbContext>(options => options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
