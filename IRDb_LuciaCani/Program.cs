@@ -15,7 +15,9 @@ builder.Services.AddSwaggerGen();
 var connString = builder.Configuration.GetConnectionString("IRDbConnection");
 builder.Services.AddDbContext<IRDbContext>(options => options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
 
-builder.Services.AddScoped<IMovieRepos, MovieRepos>();
+builder.Services.AddScoped<IMovieRepos, MovieRepos>(); //ger repos dbcontext acess
+
+builder.Services.AddCors(opt => opt.AddPolicy(name: "allowAccess", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod())); // allow access to other applications
 
 var app = builder.Build();
 
