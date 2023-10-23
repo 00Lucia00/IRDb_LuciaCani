@@ -1,4 +1,5 @@
 using IRDb_LuciaCani.Data;
+using IRDb_LuciaCani.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddSwaggerGen();
 // found in appsettings
 var connString = builder.Configuration.GetConnectionString("IRDbConnection");
 builder.Services.AddDbContext<IRDbContext>(options => options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
+
+builder.Services.AddScoped<IMovieRepos, MovieRepos>();
 
 var app = builder.Build();
 
